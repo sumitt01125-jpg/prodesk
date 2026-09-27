@@ -1,36 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowUpRight, MapPin } from "lucide-react";
+
 import { offices } from "../../data/prodeskData";
 
 function Location() {
   const [activeOffice, setActiveOffice] = useState(offices[0]);
-  const [mapReady, setMapReady] = useState(false);
-
-  useEffect(() => {
-    const section = document.getElementById("location");
-
-    if (!section) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMapReady(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: "300px",
-      }
-    );
-
-    observer.observe(section);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
     activeOffice.address
@@ -109,26 +83,14 @@ function Location() {
 
             {/* Google Maps */}
             <div className="relative min-h-[360px] overflow-hidden bg-slate-200 lg:min-h-[500px]">
-              {mapReady ? (
-                <iframe
-                  key={activeOffice.id}
-                  title={`Map of ${activeOffice.name}`}
-                  src={mapUrl}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full border-0"
-                />
-              ) : (
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 flex items-center justify-center bg-slate-200"
-                >
-                  <div className="flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-4 py-2 text-xs font-semibold text-slate-600">
-                    <MapPin size={15} className="text-amber-600" />
-                    Loading map
-                  </div>
-                </div>
-              )}
+              <iframe
+                key={activeOffice.id}
+                title={`Map of ${activeOffice.name}`}
+                src={mapUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0"
+              />
 
               <div className="pointer-events-none absolute bottom-5 left-5 max-w-[260px] rounded-2xl border border-white/70 bg-white/95 px-4 py-3 shadow-lg">
                 <div className="flex items-center gap-2">

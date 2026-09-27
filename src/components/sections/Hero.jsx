@@ -13,6 +13,255 @@ function Hero() {
       id="home"
       className="relative min-h-screen overflow-hidden bg-[#07090f] text-white"
     >
+      {/* Premium hero animations */}
+      <style>
+        {`
+          @keyframes heroCardFloat {
+            0%,
+            100% {
+              transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+              transform: translate3d(0, -7px, 0);
+            }
+          }
+
+          @keyframes capabilityFloat {
+            0%,
+            100% {
+              transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+              transform: translate3d(0, -5px, 0);
+            }
+          }
+
+          @keyframes capabilityFloatReverse {
+            0%,
+            100% {
+              transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+              transform: translate3d(0, 5px, 0);
+            }
+          }
+
+          @keyframes nodeGlow {
+            0%,
+            100% {
+              box-shadow:
+                0 0 32px rgba(251, 191, 36, 0.08),
+                0 0 0 rgba(251, 191, 36, 0);
+            }
+
+            50% {
+              box-shadow:
+                0 0 58px rgba(251, 191, 36, 0.18),
+                0 0 25px rgba(251, 191, 36, 0.06);
+            }
+          }
+
+          @keyframes linePulse {
+            0%,
+            100% {
+              opacity: 0.2;
+            }
+
+            50% {
+              opacity: 0.58;
+            }
+          }
+
+          @keyframes signalMove {
+            0% {
+              transform: translateX(-70px);
+              opacity: 0;
+            }
+
+            15% {
+              opacity: 0.8;
+            }
+
+            70% {
+              opacity: 0.8;
+            }
+
+            100% {
+              transform: translateX(70px);
+              opacity: 0;
+            }
+          }
+
+          @keyframes signalMoveVertical {
+            0% {
+              transform: translateY(-65px);
+              opacity: 0;
+            }
+
+            15% {
+              opacity: 0.7;
+            }
+
+            70% {
+              opacity: 0.7;
+            }
+
+            100% {
+              transform: translateY(65px);
+              opacity: 0;
+            }
+          }
+
+          @keyframes ambientGlow {
+            0%,
+            100% {
+              opacity: 0.15;
+              transform: scale(0.96);
+            }
+
+            50% {
+              opacity: 0.32;
+              transform: scale(1.04);
+            }
+          }
+
+          @keyframes statusPulse {
+            0%,
+            100% {
+              opacity: 0.4;
+              box-shadow: 0 0 0 rgba(52, 211, 153, 0);
+            }
+
+            50% {
+              opacity: 1;
+              box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+            }
+          }
+
+          @keyframes labelFloat {
+            0%,
+            100% {
+              transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+              transform: translate3d(0, -4px, 0);
+            }
+          }
+
+          @keyframes labelFloatReverse {
+            0%,
+            100% {
+              transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+              transform: translate3d(0, 4px, 0);
+            }
+          }
+
+          @keyframes shineSweep {
+            0% {
+              transform: translateX(-120%) skewX(-18deg);
+              opacity: 0;
+            }
+
+            20% {
+              opacity: 0;
+            }
+
+            35% {
+              opacity: 0.08;
+            }
+
+            55% {
+              opacity: 0.08;
+            }
+
+            75% {
+              opacity: 0;
+            }
+
+            100% {
+              transform: translateX(120%) skewX(-18deg);
+              opacity: 0;
+            }
+          }
+
+          .hero-card-float {
+            animation: heroCardFloat 9s ease-in-out infinite;
+            will-change: transform;
+          }
+
+          .hero-capability-float {
+            animation: capabilityFloat 5.8s ease-in-out infinite;
+            will-change: transform;
+          }
+
+          .hero-capability-reverse {
+            animation: capabilityFloatReverse 6.4s ease-in-out infinite;
+            will-change: transform;
+          }
+
+          .hero-node-glow {
+            animation: nodeGlow 4.5s ease-in-out infinite;
+            will-change: box-shadow;
+          }
+
+          .hero-line-pulse {
+            animation: linePulse 4.5s ease-in-out infinite;
+          }
+
+          .hero-signal-horizontal {
+            animation: signalMove 4.8s ease-in-out infinite;
+          }
+
+          .hero-signal-vertical {
+            animation: signalMoveVertical 5.2s ease-in-out infinite;
+          }
+
+          .hero-ambient-glow {
+            animation: ambientGlow 6s ease-in-out infinite;
+          }
+
+          .hero-status-pulse {
+            animation: statusPulse 2.8s ease-in-out infinite;
+          }
+
+          .hero-label-float {
+            animation: labelFloat 7s ease-in-out infinite;
+          }
+
+          .hero-label-reverse {
+            animation: labelFloatReverse 7.5s ease-in-out infinite;
+          }
+
+          .hero-shine {
+            animation: shineSweep 9s ease-in-out infinite;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .hero-card-float,
+            .hero-capability-float,
+            .hero-capability-reverse,
+            .hero-node-glow,
+            .hero-line-pulse,
+            .hero-signal-horizontal,
+            .hero-signal-vertical,
+            .hero-ambient-glow,
+            .hero-status-pulse,
+            .hero-label-float,
+            .hero-label-reverse,
+            .hero-shine {
+              animation: none !important;
+            }
+          }
+        `}
+      </style>
+
       {/* Background Grid */}
       <div
         aria-hidden="true"
@@ -38,10 +287,8 @@ function Hero() {
       {/* Hero Container */}
       <div className="relative mx-auto flex min-h-screen max-w-[1440px] items-center px-5 pb-20 pt-32 sm:px-8 lg:px-10 lg:pt-28">
         <div className="grid w-full items-center gap-16 lg:grid-cols-[1fr_0.9fr]">
-
           {/* LEFT SIDE */}
           <div className="max-w-2xl">
-
             {/* Small Badge */}
             <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/[0.09] bg-white/[0.025] px-4 py-2 text-xs font-medium text-white/55">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
@@ -138,11 +385,13 @@ function Hero() {
             aria-hidden="true"
             className="relative mx-auto hidden h-[540px] w-full max-w-[560px] lg:block"
           >
-            {/* Main Glow */}
-            <div className="absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-400/[0.045] blur-[70px]" />
+            {/* Ambient Glow */}
+            <div className="hero-ambient-glow absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-400/[0.055] blur-[80px]" />
 
             {/* Main Card */}
-            <div className="absolute inset-[35px] overflow-hidden rounded-[30px] border border-white/[0.09] bg-white/[0.025] shadow-xl shadow-black/20">
+            <div className="hero-card-float absolute inset-[35px] overflow-hidden rounded-[30px] border border-white/[0.09] bg-white/[0.025] shadow-xl shadow-black/20">
+              {/* Subtle glass shine */}
+              <div className="hero-shine pointer-events-none absolute -inset-y-20 left-0 z-20 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 blur-xl" />
 
               {/* Card Grid */}
               <div
@@ -155,7 +404,7 @@ function Hero() {
               />
 
               {/* Card Header */}
-              <div className="relative flex items-center justify-between border-b border-white/[0.08] px-6 py-5">
+              <div className="relative z-10 flex items-center justify-between border-b border-white/[0.08] px-6 py-5">
                 <div>
                   <p className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/30">
                     ProDesk / Technology
@@ -167,7 +416,7 @@ function Hero() {
                 </div>
 
                 <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span className="hero-status-pulse h-1.5 w-1.5 rounded-full bg-emerald-400" />
 
                   <span className="text-[9px] font-medium text-white/40">
                     CONNECTED
@@ -177,20 +426,29 @@ function Hero() {
 
               {/* Architecture Area */}
               <div className="relative h-[310px]">
-
                 {/* Horizontal Connection */}
-                <div className="absolute left-1/2 top-1/2 h-px w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="hero-line-pulse absolute left-1/2 top-1/2 h-px w-[300px] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
                 {/* Vertical Connection */}
-                <div className="absolute left-1/2 top-1/2 h-[250px] w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <div className="hero-line-pulse absolute left-1/2 top-1/2 h-[250px] w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
 
                 {/* Diagonal Connections */}
-                <div className="absolute left-1/2 top-1/2 h-px w-[210px] -translate-x-1/2 rotate-[32deg] bg-white/[0.06]" />
+                <div className="hero-line-pulse absolute left-1/2 top-1/2 h-px w-[210px] -translate-x-1/2 rotate-[32deg] bg-white/[0.06]" />
 
-                <div className="absolute left-1/2 top-1/2 h-px w-[210px] -translate-x-1/2 -rotate-[32deg] bg-white/[0.06]" />
+                <div className="hero-line-pulse absolute left-1/2 top-1/2 h-px w-[210px] -translate-x-1/2 -rotate-[32deg] bg-white/[0.06]" />
+
+                {/* Moving horizontal signal */}
+                <span className="hero-signal-horizontal absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+
+                {/* Moving vertical signal */}
+                <span className="hero-signal-vertical absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
 
                 {/* Center ProDesk */}
-                <div className="absolute left-1/2 top-1/2 flex h-[105px] w-[105px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-amber-300/30 bg-amber-400 shadow-[0_0_50px_rgba(251,191,36,0.12)]">
+                <div className="hero-node-glow absolute left-1/2 top-1/2 flex h-[105px] w-[105px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-amber-300/30 bg-amber-400">
+                  <div className="absolute inset-[-9px] rounded-full border border-amber-300/[0.08]" />
+
+                  <div className="absolute inset-[-18px] rounded-full border border-white/[0.025]" />
+
                   <div className="text-center">
                     <p className="text-lg font-semibold tracking-tight text-slate-950">
                       ProDesk
@@ -203,8 +461,8 @@ function Hero() {
                 </div>
 
                 {/* Software */}
-                <div className="absolute left-5 top-12">
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg">
+                <div className="hero-capability-float absolute left-5 top-12">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg shadow-black/20">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/10 text-blue-300">
                       <Code2 size={17} />
                     </div>
@@ -222,8 +480,8 @@ function Hero() {
                 </div>
 
                 {/* Cloud */}
-                <div className="absolute right-5 top-12">
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg">
+                <div className="hero-capability-reverse absolute right-5 top-12">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg shadow-black/20">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
                       <Cloud size={17} />
                     </div>
@@ -241,8 +499,8 @@ function Hero() {
                 </div>
 
                 {/* AI */}
-                <div className="absolute bottom-10 left-8">
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg">
+                <div className="hero-capability-reverse absolute bottom-10 left-8">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg shadow-black/20">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-400/10 text-violet-300">
                       <BrainCircuit size={17} />
                     </div>
@@ -260,8 +518,8 @@ function Hero() {
                 </div>
 
                 {/* Security */}
-                <div className="absolute bottom-10 right-8">
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg">
+                <div className="hero-capability-float absolute bottom-10 right-8">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-[#0d1018]/95 px-4 py-3 shadow-lg shadow-black/20">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
                       <ShieldCheck size={17} />
                     </div>
@@ -280,7 +538,7 @@ function Hero() {
               </div>
 
               {/* Bottom Process */}
-              <div className="relative border-t border-white/[0.08] px-6 py-5">
+              <div className="relative z-10 border-t border-white/[0.08] px-6 py-5">
                 <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/25">
                   How we approach technology
                 </p>
@@ -306,7 +564,7 @@ function Hero() {
             </div>
 
             {/* Floating Top Label */}
-            <div className="absolute -right-1 top-20 rounded-full border border-white/[0.08] bg-[#0d1018] px-3.5 py-2 shadow-lg">
+            <div className="hero-label-float absolute -right-1 top-20 rounded-full border border-white/[0.08] bg-[#0d1018] px-3.5 py-2 shadow-lg shadow-black/20">
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
 
@@ -317,7 +575,7 @@ function Hero() {
             </div>
 
             {/* Floating Bottom Label */}
-            <div className="absolute -left-1 bottom-24 rounded-full border border-white/[0.08] bg-[#0d1018] px-3.5 py-2 shadow-lg">
+            <div className="hero-label-reverse absolute -left-1 bottom-24 rounded-full border border-white/[0.08] bg-[#0d1018] px-3.5 py-2 shadow-lg shadow-black/20">
               <span className="text-[9px] font-medium tracking-wide text-white/40">
                 ENGINEERING × BUSINESS
               </span>
